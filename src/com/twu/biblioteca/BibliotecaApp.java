@@ -3,9 +3,9 @@ package com.twu.biblioteca;
 
 import static java.lang.System.*;
 public class BibliotecaApp {
-    Store store;
+    private Store store;
     private void initialize(){
-        store=new Store();
+        store=Store.getNewInstance();
         store.addBook("xxxn","Crack","1990");
         store.addBook("nop jj","moel","1887");
         store.addBook("nop jj","moel","1887");
@@ -24,7 +24,7 @@ public class BibliotecaApp {
     }
     void displayList(){
         out.println("\n\nbook list:\n");
-        store.getAvailableBooks().forEach(line -> out.println(line));
+        store.getAvailableBooks().forEach(out::println);
     }
     void displayActions(){
         out.println();

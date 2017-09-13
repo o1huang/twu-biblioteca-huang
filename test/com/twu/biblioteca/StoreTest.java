@@ -3,7 +3,6 @@ package com.twu.biblioteca;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.awt.print.Book;
 import java.util.*;
 
 import static java.util.Arrays.asList;
@@ -13,14 +12,14 @@ public class StoreTest {
     Store store;
     @Before
     public void before(){
-        store=new Store();
+        store=Store.getNewInstance();
         store.addBook("xxxn","Crack","1990");
         store.addBook("nop jj","moel","1887");
     }
 
     @Test
     public void getAvailableBooks() throws Exception {
-        assertEquals( new ArrayList<String>(asList("xxxn"+"\t"+"Crack"+"\t"+"1990", "nop jj"+"\t"+"moel"+"\t"+"1887")) , store.getAvailableBooks());
+        assertEquals(new ArrayList<>(asList("xxxn" + "\t" + "Crack" + "\t" + "1990", "nop jj" + "\t" + "moel" + "\t" + "1887")) , store.getAvailableBooks());
     }
 
     @Test

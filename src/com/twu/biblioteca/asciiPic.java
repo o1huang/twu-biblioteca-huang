@@ -1,7 +1,7 @@
 package com.twu.biblioteca;
 
-public class  asciiPic {
-    public static String  welcome=
+class  asciiPic {
+    static String  welcome=
             "                       /$$                                                 /$$                   \n" +
             "                      | $$                                                | $$                   \n" +
             " /$$  /$$  /$$ /$$$$$$| $$ /$$$$$$$ /$$$$$$ /$$$$$$/$$$$  /$$$$$$        /$$$$$$   /$$$$$$       \n" +
