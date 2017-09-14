@@ -1,5 +1,7 @@
 package com.twu.biblioteca;
 
+import jdk.nashorn.internal.runtime.options.Option;
+
 import java.awt.print.Book;
 import java.util.ArrayList;
 import java.util.Optional;
@@ -22,6 +24,7 @@ class Store {
     public int optionNum;
     public int bookIndex;
     public String bookName;
+    public BookInfo selectedBookInfo;
 
     public ArrayList<BookInfo> getAvailableBooks(){
         ArrayList<BookInfo> availableBooks =(ArrayList<BookInfo> )books.stream()
@@ -44,6 +47,16 @@ class Store {
         }
         return false;
     }
-
+    public boolean returnBook(BookInfo b){
+        Optional<BookInfo> storeBook = books.stream().filter(x->x.equals(b)).findFirst();
+        if(storeBook.isPresent()){
+            storeBook.get().returns();
+            return true;
+        }
+        return false;
+    }
+    public Optional<BookInfo> findRentedBook(String bookName){
+        return books.stream().filter(x->x.beenRented&&x.name.equals(bookName)).findFirst();
+    }
 }
 

@@ -7,11 +7,11 @@ public class BibliotecaApp {
     private void initialize(){
         store=Store.getNewInstance();
         store.addBook("xxxn","Crack","1990");
-        store.addBook("nop jj","moel","1887");
-        store.addBook("nop jj","moel","1887");
-        store.addBook("nop jj","moel","1887");
-        store.addBook("nop jj","moel","1887");
-        store.addBook("nop jj","moel","1887");
+        store.addBook("poo boo","moel","1887");
+        store.addBook("tau ao","moel","1887");
+        store.addBook("kazuya","moel","1887");
+        store.addBook("WDFD","moel","1887");
+        store.addBook("lastOfus","moel","1887");
     }
 
     public void start(){
