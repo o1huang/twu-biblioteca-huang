@@ -1,5 +1,7 @@
 package com.twu.biblioteca;
 
+import java.awt.print.Book;
+
 class BookInfo {
     String name;
     String author;
@@ -9,5 +11,20 @@ class BookInfo {
         name=vname;
         author=vauthor;
         year=vyear;
+    }
+    @Override
+    public boolean equals(Object o) {
+        if (this == o)
+            return true;
+        if(o instanceof BookInfo){
+            BookInfo bo=(BookInfo)o;
+            if(bo.name.equals(this.name)&&bo.author.equals(this.author)&&bo.year.equals(this.year))
+                return true;
+        }
+        return false;
+    }
+    @Override
+    public String toString() {
+        return this.name+"\t"+this.author+"\t"+this.year;
     }
 }

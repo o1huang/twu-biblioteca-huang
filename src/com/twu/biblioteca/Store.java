@@ -24,7 +24,7 @@ class Store {
     public ArrayList<String>  getAvailableBooks(){
         ArrayList<String> availableBooks =(ArrayList<String> )books.stream()
                                 .filter(b->!b.beenRented)
-                                .map( b->b.name+"\t"+b.author+"\t"+b.year )
+                                .map(BookInfo::toString )
                                 .collect(Collectors.toList());
         return availableBooks;
     }
