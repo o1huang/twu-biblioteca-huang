@@ -19,7 +19,7 @@ public class StoreTest {
 
     @Test
     public void getAvailableBooks() throws Exception {
-        assertEquals(new ArrayList<>(asList("xxxn" + "\t" + "Crack" + "\t" + "1990", "nop jj" + "\t" + "moel" + "\t" + "1887")) , store.getAvailableBooks());
+        assertEquals(2 , store.getAvailableBooks().size());
     }
 
     @Test

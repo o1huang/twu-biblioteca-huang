@@ -12,6 +12,14 @@ class BookInfo {
         author=vauthor;
         year=vyear;
     }
+
+    public void rent(){
+        beenRented=true;
+    }
+    public void returns(){
+        beenRented=false;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o)

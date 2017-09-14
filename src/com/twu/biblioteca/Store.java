@@ -1,6 +1,8 @@
 package com.twu.biblioteca;
 
+import java.awt.print.Book;
 import java.util.ArrayList;
+import java.util.Optional;
 import java.util.stream.Collectors;
 class Store {
     //singleton instance
@@ -21,10 +23,9 @@ class Store {
     public int bookIndex;
     public String bookName;
 
-    public ArrayList<String>  getAvailableBooks(){
-        ArrayList<String> availableBooks =(ArrayList<String> )books.stream()
+    public ArrayList<BookInfo> getAvailableBooks(){
+        ArrayList<BookInfo> availableBooks =(ArrayList<BookInfo> )books.stream()
                                 .filter(b->!b.beenRented)
-                                .map(BookInfo::toString )
                                 .collect(Collectors.toList());
         return availableBooks;
     }
@@ -35,7 +36,14 @@ class Store {
     public void addBook(String name,String author,String year){
         books.add(new BookInfo(name,author,year));
     }
-
+    public boolean checkoutBook(BookInfo b){
+        Optional<BookInfo> storeBook = books.stream().filter(x->x.equals(b)).findFirst();
+        if(storeBook.isPresent()){
+            storeBook.get().rent();
+            return true;
+        }
+        return false;
+    }
 
 }
 
