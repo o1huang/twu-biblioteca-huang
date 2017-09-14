@@ -15,8 +15,11 @@ class Store {
     }
 
     //state filed
-    String infoMassage;
+    public String infoMassage;
     ArrayList<BookInfo> books=new ArrayList<>();
+    public int optionNum;
+    public int bookIndex;
+    public String bookName;
 
     public ArrayList<String>  getAvailableBooks(){
         ArrayList<String> availableBooks =(ArrayList<String> )books.stream()

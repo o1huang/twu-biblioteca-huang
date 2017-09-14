@@ -13,29 +13,9 @@ public class BibliotecaApp {
         store.addBook("nop jj","moel","1887");
         store.addBook("nop jj","moel","1887");
     }
-    final private static int WELCOMETIME=1200;
-    void welcome(){
-        out.println(asciiPic.welcome);
-        try {
-            Thread.sleep(WELCOMETIME);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-    }
-    void displayList(){
-        out.println("\n\nbook list:\n");
-        store.getAvailableBooks().forEach(out::println);
-    }
-    void displayActions(){
-        out.println();
-    }
-    void actions(){
 
-    }
     public void start(){
-        welcome();
-        displayList();
-        actions();
+        Core.run();
     }
     public static void main(String[] args) {
         BibliotecaApp app=new BibliotecaApp();
