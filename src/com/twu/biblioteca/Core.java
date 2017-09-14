@@ -20,10 +20,9 @@ public class Core {
     }
     static State displayMainMenu(){
         out.println("====================Main Menu=================");
-        out.println("Enter number to select an option;\nEnter \"quit\" to quit biblioteca");
+        out.println("Enter number to select an option;\nOr enter \"quit\" to quit biblioteca");
         out.println("1. Display the book list");
         String cmd = read();
-
         if(cmd.equals("quit")){
             return State.quit;
         }
@@ -37,12 +36,25 @@ public class Core {
 
     }
     static State displayBookList(){
-        out.println("\n\nbook list:\n");
+        out.println("\nbook list:");
+        out.println("#\tname\t\tauthor\tyear\t");
         Store store=Store.getInstance();
         store.getAvailableBooks().forEach(out::println);
-        return State.optionList;
+        out.println("------------------------------------------");
+        out.println("Enter number to select a book;\nOr enter \"quit\" to quit biblioteca");
+        String cmd = read();
+        if(cmd.equals("quit")){
+            return State.quit;
+        }
+        else if(cmd.equals("1")){
+            return State.bookList;
+        }
+        else {
+            out.println("Invalid option!");
+            return State.optionList;
+        }
     }
-    static void displayActions(){
+    static void checkoutBooks(){
         out.println();
     }
     static void run(){
