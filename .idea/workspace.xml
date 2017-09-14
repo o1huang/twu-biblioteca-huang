@@ -3,9 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="4cc53b41-be48-4ce3-bfa1-2ef7cbba7eee" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/twu/biblioteca/BibliotecaApp.java" afterPath="$PROJECT_DIR$/src/com/twu/biblioteca/BibliotecaApp.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/twu/biblioteca/Core.java" afterPath="$PROJECT_DIR$/src/com/twu/biblioteca/Core.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/twu/biblioteca/Store.java" afterPath="$PROJECT_DIR$/src/com/twu/biblioteca/Store.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -33,8 +31,8 @@
       <file leaf-file-name="Core.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/twu/biblioteca/Core.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1115">
-              <caret line="182" column="26" lean-forward="true" selection-start-line="182" selection-start-column="26" selection-end-line="182" selection-end-column="26" />
+            <state relative-caret-position="143">
+              <caret line="127" column="12" lean-forward="true" selection-start-line="127" selection-start-column="12" selection-end-line="127" selection-end-column="12" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -507,7 +505,14 @@
       <option name="project" value="LOCAL" />
       <updated>1505370486905</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="R1 d2 almost done">
+      <created>1505373975474</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1505373975474</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -544,7 +549,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="145" y="24" width="1400" height="877" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
@@ -552,7 +556,7 @@
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32884097" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3301887" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3301887" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32884097" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Thumbnails" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32884097" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32884097" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -578,7 +582,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="R1 d1" />
     <MESSAGE value="R1 d2m" />
-    <option name="LAST_COMMIT_MESSAGE" value="R1 d2m" />
+    <MESSAGE value="R1 d2 almost done" />
+    <option name="LAST_COMMIT_MESSAGE" value="R1 d2 almost done" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -773,8 +778,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/twu/biblioteca/Core.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1115">
-          <caret line="182" column="26" lean-forward="true" selection-start-line="182" selection-start-column="26" selection-end-line="182" selection-end-column="26" />
+        <state relative-caret-position="143">
+          <caret line="127" column="12" lean-forward="true" selection-start-line="127" selection-start-column="12" selection-end-line="127" selection-end-column="12" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

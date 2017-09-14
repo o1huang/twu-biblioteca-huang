@@ -15,17 +15,8 @@ public class Core {
         String str = in.nextLine();
         Pattern pattern = Pattern.compile("[0-9]+");
         Matcher matcher = pattern.matcher((CharSequence) str);
-        if (matcher.matches()) {
-            return Integer.parseInt(str);
-        } else {
-            return str;
-        }
-    }
-
-    static State welcomeView(){
-        out.println(asciiPic.welcome);
-        screenFoze();
-        return State.mainMenu;
+        if (matcher.matches()) return Integer.parseInt(str);
+        else return str;
     }
 
     private static void screenFoze() {
@@ -36,10 +27,16 @@ public class Core {
         }
     }
 
+    static State welcomeView(){
+        out.println(asciiPic.welcome);
+        screenFoze();
+        return State.mainMenu;
+    }
+
     static State mainMenuView(){
         out.println("====================Main Menu=================");
         out.println("Enter number to select an option;\nOr enter \"quit\" to quit biblioteca");
-        out.println("1. display the book list");
+        out.println("1. display the list of available books");
         out.println("2. return a book");
         Object res = read();
         if(res instanceof Integer){
@@ -52,9 +49,7 @@ public class Core {
             }
         }else {
             String cmd =(String)res;
-            if (cmd.equals("quit")) {
-                return State.quit;
-            }
+            if (cmd.equals("quit")) return State.quit;
         }
         //no option matched!
         out.println("Invalid command!");
@@ -64,27 +59,25 @@ public class Core {
     }
     static State bookListView(){
         Store store=Store.getInstance();
-        ArrayList<BookInfo> availablebooks=store.getAvailableBooks();
+        ArrayList<BookInfo> availableBooks=store.getAvailableBooks();
         out.println("------------------------------------------");
         out.println("\nBook list:");
         out.println("#\tname\t\tauthor\tyear\t");
-        for (int i=1;i<=availablebooks.size();i++){
-            out.println(Integer.toString(i)+"\t"+availablebooks.get(i-1).toString());
+        for (int i=1;i<=availableBooks.size();i++){
+            out.println(Integer.toString(i)+"\t"+availableBooks.get(i-1).toString());
         }
         out.println("------------------------------------------");
         out.println("Enter number to select a book;\nOr enter \"quit\" to quit biblioteca");
         Object res = read();
         if(res instanceof Integer){
             int cmd = (int)res;
-            if(cmd>0&&cmd<=availablebooks.size()){
-                store.selectedBookInfo=availablebooks.get(cmd-1);
+            if(cmd>0&&cmd<=availableBooks.size()){
+                store.selectedBookInfo=availableBooks.get(cmd-1);
                 return State.bookInfo;
             }
         }else {
             String cmd =(String)res;
-            if (cmd.equals("quit")) {
-                return State.quit;
-            }
+            if (cmd.equals("quit")) return State.quit;
         }
         //no option matched!
         out.println("Invalid option!");
@@ -97,6 +90,7 @@ public class Core {
         out.println("your selected book: \n"+selectedBook.toString());
         out.println("Enter number to select an option;");
         out.println("1. checkout this book");
+        out.println("2. cancel and back to main menu");
 
         Object res = read();
         if(res instanceof Integer){
@@ -107,11 +101,13 @@ public class Core {
                 screenFoze();
                 return State.mainMenu;
             }
-        }else {
-            String cmd =(String)res;
-            if (cmd.equals("quit")) {
-                return State.quit;
+            else if(cmd==2){
+                out.println("Canceled!");
+                screenFoze();
+                return State.mainMenu;
             }
+        }else {
+            if (((String)res).equals("quit")) return State.quit;
         }
         //no option matched!
         out.println("Invalid option!");
@@ -146,9 +142,7 @@ public class Core {
                 }
             }else {
                 String cmd =(String)res;
-                if (cmd.equals("quit")) {
-                    return State.quit;
-                }
+                if (cmd.equals("quit")) return State.quit;
             }
             out.println("Invalid option!");
             screenFoze();
@@ -187,9 +181,7 @@ public class Core {
                 case quit:
                     break;
             }
-            if(s==State.quit){
-                return;
-            }
+            if(s==State.quit) return;
         }
     }
 }
