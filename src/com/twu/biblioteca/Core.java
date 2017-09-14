@@ -2,11 +2,21 @@ package com.twu.biblioteca;
 
 import static java.lang.System.out;
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class Core {
     final private static int WELCOME_TIME=1200;
-    private static String read(){
+    private static Object read(){
         Scanner in = new Scanner(System.in);
-        return in.nextLine();
+        String str = in.nextLine();
+        Pattern pattern = Pattern.compile("[0-9]+");
+        Matcher matcher = pattern.matcher((CharSequence) str);
+        if (matcher.matches()) {
+            return Integer.parseInt(str);
+        } else {
+            return str;
+        }
     }
 
     static State welcome(){
@@ -22,17 +32,21 @@ public class Core {
         out.println("====================Main Menu=================");
         out.println("Enter number to select an option;\nOr enter \"quit\" to quit biblioteca");
         out.println("1. Display the book list");
-        String cmd = read();
-        if(cmd.equals("quit")){
-            return State.quit;
+        Object res = read();
+        if(res instanceof Integer){
+            int cmd = (int)res;
+            if(cmd==1){
+                return State.bookList;
+            }
+        }else {
+            String cmd =(String)res;
+            if (cmd.equals("quit")) {
+                return State.quit;
+            }
         }
-        else if(cmd.equals("1")){
-            return State.bookList;
-        }
-        else {
-            out.println("Invalid option!");
-            return State.optionList;
-        }
+        //no option matched!
+        out.println("Invalid command!");
+        return State.optionList;
 
     }
     static State displayBookList(){
@@ -42,17 +56,21 @@ public class Core {
         store.getAvailableBooks().forEach(out::println);
         out.println("------------------------------------------");
         out.println("Enter number to select a book;\nOr enter \"quit\" to quit biblioteca");
-        String cmd = read();
-        if(cmd.equals("quit")){
-            return State.quit;
+        Object res = read();
+        if(res instanceof Integer){
+            int cmd = (int)res;
+            if(cmd==1){
+                return State.bookList;
+            }
+        }else {
+            String cmd =(String)res;
+            if (cmd.equals("quit")) {
+                return State.quit;
+            }
         }
-        else if(cmd.equals("1")){
-            return State.bookList;
-        }
-        else {
-            out.println("Invalid option!");
-            return State.optionList;
-        }
+        //no option matched!
+        out.println("Invalid option!");
+        return State.bookList;
     }
     static void checkoutBooks(){
         out.println();

@@ -10,6 +10,6 @@ import static org.junit.Assert.*;
 public class CoreTest {
     @Test
     public void testJava() throws Exception {
-        assertEquals(Integer.parseInt("123"),123);
+        assertEquals(Integer.parseInt("13"),3);
     }
 }
