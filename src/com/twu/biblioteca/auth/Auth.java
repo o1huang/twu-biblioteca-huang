@@ -20,9 +20,9 @@ public class Auth {
      *
      * @return false:user already exists
      */
-    public static boolean userSignUp(String name, String password, Role role) {
+    public static boolean userSignUp(String name, String password, Role role,String id, String email, String phoneNumber) {
         Optional<User> ou = findUser(name);
-        return !ou.isPresent() && Store.getInstance().users.add(new User(name, password, role));
+        return !ou.isPresent() && Store.getInstance().users.add(new User(name, password, role, id, email, phoneNumber));
     }
 
     static Optional<User> findUser(String name){
