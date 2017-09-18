@@ -2,20 +2,19 @@ package com.twu.biblioteca.auth;
 
 import java.util.Objects;
 
-public class User {
+public class User implements Account {
 
     private String name;
     private String password;
-    private Role role;
+    private Role role = Role.COSTUMER;
     private String ID;
     private String email;
     private String phoneNumber;
 
-    public User(String name, String password, Role role, String id, String email, String phoneNumber) {
+    public User(String name, String password, String id, String email, String phoneNumber) {
         this.name = name;
         this.password = password;
-        this.role = role;
-        ID = id;
+        this.ID = id;
         this.email = email;
         this.phoneNumber = phoneNumber;
     }
@@ -27,12 +26,16 @@ public class User {
         return name;
     }
 
-    public Role getRole() {
-        return role;
+    public String getID() {
+        return ID;
     }
 
-    public boolean sameName(String name){
-        return name.equals(this.name);
+    public Role getRole() {
+        return Role.COSTUMER;
+    }
+
+    public boolean sameID(String ID){
+        return ID.equals(this.ID);
     }
 
     @Override
