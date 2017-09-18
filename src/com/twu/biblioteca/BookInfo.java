@@ -1,18 +1,38 @@
 package com.twu.biblioteca;
 
+import com.twu.biblioteca.auth.User;
+
 public class BookInfo implements Item {
     String name;
     String author;
     String year;
     boolean beenRented=false;
+
+    String borrowerID;
     BookInfo(String vname, String vauthor, String vyear){
         name=vname;
         author=vauthor;
         year=vyear;
     }
 
+    @Override
+    public String getName() {
+        return name;
+    }
+
+    @Override
+    public boolean isBeenRented() {
+        return beenRented;
+    }
+
+
+
     public void rent(){
         beenRented=true;
+    }
+    public void rent(User u){
+        rent();
+        this.borrowerID=u.getID();
     }
     public void returns(){
         beenRented=false;

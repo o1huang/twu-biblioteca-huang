@@ -1,5 +1,8 @@
 package com.twu.biblioteca.auth;
 
+import com.twu.biblioteca.Item;
+
+import java.util.ArrayList;
 import java.util.Objects;
 
 public class User implements Account {
@@ -10,6 +13,9 @@ public class User implements Account {
     private String ID;
     private String email;
     private String phoneNumber;
+
+
+    private ArrayList<Item> possessedItems=new ArrayList<>();
 
     public User(String name, String password, String id, String email, String phoneNumber) {
         this.name = name;

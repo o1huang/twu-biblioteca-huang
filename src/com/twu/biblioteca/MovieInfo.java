@@ -3,17 +3,28 @@ package com.twu.biblioteca;
 import java.util.Objects;
 
 public class MovieInfo implements Item {
-    private String name;
-    private String year;
-    private String director;
-    private String rating;
-    boolean beenRented=false;
+    public String name;
+    public String year;
+    public String director;
+    public String rating;
+    public boolean beenRented=false;
 
     public MovieInfo(String name, String year, String director, String rating) {
         this.name = name;
         this.year = year;
         this.director = director;
         this.rating = rating;
+    }
+
+
+    @Override
+    public String getName() {
+        return name;
+    }
+
+    @Override
+    public boolean isBeenRented() {
+        return beenRented;
     }
 
     public void rent(){
@@ -28,8 +39,7 @@ public class MovieInfo implements Item {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         MovieInfo movieInfo = (MovieInfo) o;
-        return beenRented == movieInfo.beenRented &&
-                Objects.equals(name, movieInfo.name) &&
+        return  Objects.equals(name, movieInfo.name) &&
                 Objects.equals(year, movieInfo.year) &&
                 Objects.equals(director, movieInfo.director) &&
                 Objects.equals(rating, movieInfo.rating);

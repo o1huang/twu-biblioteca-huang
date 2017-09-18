@@ -1,10 +1,13 @@
 package com.twu.biblioteca;
 
+import com.twu.biblioteca.auth.Auth;
+import com.twu.biblioteca.auth.User;
 import com.twu.biblioteca.util.Utils;
 import com.twu.biblioteca.util.AsciiPic;
 
 import static java.lang.System.out;
 
+import java.io.Console;
 import java.util.ArrayList;
 import java.util.Optional;
 import java.util.Scanner;
@@ -17,11 +20,29 @@ public class Core {
         return State.MAIN_MENU;
     }
 
+    static State LoginView(){
+        out.println("-----------------log in-----------------");
+        Console cons = System.console();
+        String ID = cons.readLine("ID: ");
+        String passwd = String.valueOf( cons.readPassword("password: "));
+        Optional<User> ou = Auth.authorize(ID,passwd);
+        if(ou.isPresent()){
+            out.println("Log in succeeded!");
+        }
+        else{
+            out.println("ID and password doesn't match, please try again!");
+            Utils.screenFoze();
+            return State.SIGN_IN;
+        }
+        return null;
+    }
+
     static State mainMenuView(){
         out.println("====================Main Menu=================");
         out.println("Enter number to select an option;\nOr enter \"quit\" to quit biblioteca");
         out.println("1. display the list of available books");
-        out.println("2. return a book");
+        out.println("2. display the list of available movies");
+        out.println("3. return a book");
         Object res = Utils.read();
         if(res instanceof Integer){
             int cmd = (int)res;
@@ -29,6 +50,9 @@ public class Core {
                 return State.BOOK_LIST;
             }
             else if(cmd==2){
+
+            }
+            else if(cmd==3){
                 return State.RETURN_BOOK;
             }
         }else {
@@ -44,13 +68,11 @@ public class Core {
     static State bookListView(){
         Store store=Store.getInstance();
         ArrayList<BookInfo> availableBooks=store.getAvailableBooks();
-        out.println("------------------------------------------");
-        out.println("\nBook list:");
-        out.println("#\tname\t\tauthor\tyear\t");
+        out.println("-------------- Book list -----------------");
+        out.println("#\tname\tauthor\tyear\t");
         for (int i=1;i<=availableBooks.size();i++){
             out.println(Integer.toString(i)+"\t"+availableBooks.get(i-1).toString());
         }
-        out.println("------------------------------------------");
         out.println("Enter number to select a book;\nOr enter \"quit\" to quit biblioteca");
         Object res = Utils.read();
         if(res instanceof Integer){
@@ -70,7 +92,7 @@ public class Core {
     static State bookInfoView(){
         Store store=Store.getInstance();
         BookInfo selectedBook=store.selectedBookInfo;
-        out.println("------------------------------------------");
+        out.println("----------------book info-----------------");
         out.println("your selected book: \n"+selectedBook.toString());
         out.println("Enter number to select an option;");
         out.println("1. checkout this book");
@@ -100,7 +122,7 @@ public class Core {
     }
     static State returnBookView(){
         Store store=Store.getInstance();
-        out.println("------------------------------------------");
+        out.println("---------------return book----------------");
         out.println("Input book's name:");
         String name = new Scanner(System.in).nextLine();
         if(name.equals("quit")) return State.QUIT;
