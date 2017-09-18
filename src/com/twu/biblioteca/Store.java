@@ -1,9 +1,11 @@
 package com.twu.biblioteca;
 
+import com.twu.biblioteca.auth.User;
+
 import java.util.ArrayList;
 import java.util.Optional;
 import java.util.stream.Collectors;
-class Store {
+public class Store {
     //singleton instance
     private static Store singleton=new Store();
 
@@ -16,12 +18,11 @@ class Store {
     }
 
     //state filed
-    public String infoMassage;
-    ArrayList<BookInfo> books=new ArrayList<>();
-    public int optionNum;
-    public int bookIndex;
-    public String bookName;
     public BookInfo selectedBookInfo;
+    //store filed
+    public ArrayList<BookInfo> books=new ArrayList<>();
+
+    public ArrayList<User> users=new ArrayList<>();
 
     public ArrayList<BookInfo> getAvailableBooks(){
         ArrayList<BookInfo> availableBooks =(ArrayList<BookInfo> )books.stream()
@@ -44,6 +45,7 @@ class Store {
         }
         return false;
     }
+
     public boolean returnBook(BookInfo b){
         Optional<BookInfo> storeBook = books.stream().filter(x->x.equals(b)).findFirst();
         if(storeBook.isPresent()){

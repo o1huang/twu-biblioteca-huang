@@ -30,7 +30,7 @@ public class Core {
     static State welcomeView(){
         out.println(asciiPic.welcome);
         screenFoze();
-        return State.mainMenu;
+        return State.MAIN_MENU;
     }
 
     static State mainMenuView(){
@@ -42,19 +42,19 @@ public class Core {
         if(res instanceof Integer){
             int cmd = (int)res;
             if(cmd==1){
-                return State.bookList;
+                return State.BOOK_LIST;
             }
             else if(cmd==2){
-                return State.returnBook;
+                return State.RETURN_BOOK;
             }
         }else {
             String cmd =(String)res;
-            if (cmd.equals("quit")) return State.quit;
+            if (cmd.equals("quit")) return State.QUIT;
         }
         //no option matched!
         out.println("Invalid command!");
         screenFoze();
-        return State.mainMenu;
+        return State.MAIN_MENU;
 
     }
     static State bookListView(){
@@ -73,15 +73,15 @@ public class Core {
             int cmd = (int)res;
             if(cmd>0&&cmd<=availableBooks.size()){
                 store.selectedBookInfo=availableBooks.get(cmd-1);
-                return State.bookInfo;
+                return State.BOOK_INFO;
             }
         }else {
             String cmd =(String)res;
-            if (cmd.equals("quit")) return State.quit;
+            if (cmd.equals("quit")) return State.QUIT;
         }
         //no option matched!
         out.println("Invalid option!");
-        return State.bookList;
+        return State.BOOK_LIST;
     }
     static State bookInfoView(){
         Store store=Store.getInstance();
@@ -99,27 +99,27 @@ public class Core {
                 store.checkoutBook(selectedBook);
                 out.println("Checkout succeed!");
                 screenFoze();
-                return State.mainMenu;
+                return State.MAIN_MENU;
             }
             else if(cmd==2){
                 out.println("Canceled!");
                 screenFoze();
-                return State.mainMenu;
+                return State.MAIN_MENU;
             }
         }else {
-            if (((String)res).equals("quit")) return State.quit;
+            if (((String)res).equals("quit")) return State.QUIT;
         }
         //no option matched!
         out.println("Invalid option!");
         screenFoze();
-        return State.bookInfo;
+        return State.BOOK_INFO;
     }
     static State returnBookView(){
         Store store=Store.getInstance();
         out.println("------------------------------------------");
         out.println("Input book's name:");
         String name = new Scanner(System.in).nextLine();
-        if(name.equals("quit")) return State.quit;
+        if(name.equals("quit")) return State.QUIT;
         Optional<BookInfo> ob=store.findRentedBook(name);
         if(ob.isPresent()){
             BookInfo b=ob.get();
@@ -133,58 +133,58 @@ public class Core {
                     store.returnBook(b);
                     out.println("Return book succeed!");
                     screenFoze();
-                    return State.mainMenu;
+                    return State.MAIN_MENU;
                 }
                 else if(cmd==2){
                     out.println("Return book canceled!");
                     screenFoze();
-                    return State.mainMenu;
+                    return State.MAIN_MENU;
                 }
             }else {
                 String cmd =(String)res;
-                if (cmd.equals("quit")) return State.quit;
+                if (cmd.equals("quit")) return State.QUIT;
             }
             out.println("Invalid option!");
             screenFoze();
-            return State.mainMenu;
+            return State.MAIN_MENU;
         }
         else{
             out.println("No such a book, please check your spelling!");
             screenFoze();
-            return State.returnBook;
+            return State.RETURN_BOOK;
         }
     }
     static void run(){
-        State s=State.init;
+        State next_state=State.STATE;
         while(true){
-            switch (s){
-                case init:
-                    s= State.welcome;
+            switch (next_state){
+                case STATE:
+                    next_state= State.WELCOME;
                     break;
-                case welcome:
-                    s= welcomeView();
+                case WELCOME:
+                    next_state= welcomeView();
                     break;
-                case mainMenu:
-                    s= mainMenuView();
+                case MAIN_MENU:
+                    next_state= mainMenuView();
                     break;
-                case bookList:
-                    s= bookListView();
+                case BOOK_LIST:
+                    next_state= bookListView();
                     break;
-                case bookInfo:
-                    s= bookInfoView();
+                case BOOK_INFO:
+                    next_state= bookInfoView();
                     break;
-                case checkoutBook:
+                case CHECKOUT_BOOK:
                     break;
-                case returnBook:
-                    s=returnBookView();
+                case RETURN_BOOK:
+                    next_state=returnBookView();
                     break;
-                case quit:
+                case QUIT:
                     break;
             }
-            if(s==State.quit) return;
+            if(next_state==State.QUIT) return;
         }
     }
 }
 enum State{
-    init,welcome, mainMenu,bookList,bookInfo,checkoutBook,returnBook,quit
+    STATE, WELCOME, MAIN_MENU, BOOK_LIST, BOOK_INFO, CHECKOUT_BOOK, RETURN_BOOK, QUIT
 }
