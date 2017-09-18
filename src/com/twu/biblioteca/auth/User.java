@@ -6,9 +6,9 @@ public class User {
     /**
      * user's name, also used as login key
      */
-    String name;
-    String password;
-    Role role;
+    private String name;
+    private String password;
+    private Role role;
 
     public User(String name, String password, Role role) {
         this.name = name;
@@ -16,7 +16,7 @@ public class User {
         this.role = role;
     }
     public boolean verifyPassWord(String password){
-        return password == this.password;
+        return Objects.equals(password, this.password);
     }
 
     public String getName() {
