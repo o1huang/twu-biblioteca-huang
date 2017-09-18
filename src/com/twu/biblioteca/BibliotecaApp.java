@@ -1,7 +1,5 @@
 package com.twu.biblioteca;
 
-
-import static java.lang.System.*;
 public class BibliotecaApp {
     private Store store;
     private void initialize(){

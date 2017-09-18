@@ -1,8 +1,6 @@
 package com.twu.biblioteca;
 
-import java.awt.print.Book;
-
-class BookInfo {
+public class BookInfo implements Item {
     String name;
     String author;
     String year;
