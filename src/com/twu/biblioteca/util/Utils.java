@@ -23,7 +23,7 @@ public class Utils {
         return String.valueOf(cons.readPassword());
     }
 
-    public static void screenFoze() {
+    public static void screenFroze() {
         try {
             Thread.sleep(WELCOME_TIME);
         } catch (InterruptedException e) {

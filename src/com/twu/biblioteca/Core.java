@@ -9,7 +9,6 @@ import com.twu.biblioteca.util.AsciiPic;
 
 import static java.lang.System.out;
 
-import java.io.Console;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -19,7 +18,7 @@ public class Core {
 
     static State welcomeView(){
         out.println(AsciiPic.welcome);
-        Utils.screenFoze();
+        Utils.screenFroze();
         return State.SIGN_IN;
     }
 
@@ -37,7 +36,7 @@ public class Core {
             out.println("welcome "+u.getName() +" !");
 
 
-            Utils.screenFoze();
+            Utils.screenFroze();
 
             if(u.getRole()== Role.COSTUMER) return State.MAIN_MENU;
             if(u.getRole() == Role.LIBRARIAN) return State.ADMIN_MAIN_MENU;
@@ -45,7 +44,7 @@ public class Core {
         }
         else{
             out.println("ID and password doesn't match, please try again!");
-            Utils.screenFoze();
+            Utils.screenFroze();
             return State.SIGN_IN;
         }
         return State.QUIT; //user is not either costumer or admin
@@ -70,7 +69,7 @@ public class Core {
         }
         //no option matched!
         out.println("Invalid command!");
-        Utils.screenFoze();
+        Utils.screenFroze();
         return State.USER_INFO;
 
 
@@ -91,7 +90,7 @@ public class Core {
         }
         //no option matched!
         out.println("Invalid command!");
-        Utils.screenFoze();
+        Utils.screenFroze();
         return State.ADMIN_MAIN_MENU;
 
     }
@@ -118,7 +117,7 @@ public class Core {
         }
         //no option matched!
         out.println("Invalid command!");
-        Utils.screenFoze();
+        Utils.screenFroze();
         return State.ADMIN_MAIN_MENU;
 
     }
@@ -143,7 +142,7 @@ public class Core {
         }
         //no option matched!
         out.println("Invalid command!");
-        Utils.screenFoze();
+        Utils.screenFroze();
         return State.MAIN_MENU;
 
     }
@@ -169,6 +168,7 @@ public class Core {
         }
         //no option matched!
         out.println("Invalid option!");
+        Utils.screenFroze();
         return State.BOOK_LIST;
     }
     static State bookListView(){
@@ -210,12 +210,12 @@ public class Core {
             if(cmd==1){
                 store.checkoutItem(selectedItem);
                 out.println("Checkout succeed!");
-                Utils.screenFoze();
+                Utils.screenFroze();
                 return State.MAIN_MENU;
             }
             if(cmd==2){
                 out.println("Canceled!");
-                Utils.screenFoze();
+                Utils.screenFroze();
                 return State.MAIN_MENU;
             }
         }else {
@@ -223,7 +223,7 @@ public class Core {
         }
         //no option matched!
         out.println("Invalid option!");
-        Utils.screenFoze();
+        Utils.screenFroze();
         return State.ITEM_INFO;
     }
     static State returnBookView(){
@@ -244,12 +244,12 @@ public class Core {
                 if(cmd==1){
                     store.returnBook(b);
                     out.println("Return book succeed!");
-                    Utils.screenFoze();
+                    Utils.screenFroze();
                     return State.MAIN_MENU;
                 }
                 if(cmd==2){
                     out.println("Return book canceled!");
-                    Utils.screenFoze();
+                    Utils.screenFroze();
                     return State.MAIN_MENU;
                 }
             }else {
@@ -257,12 +257,12 @@ public class Core {
                 if (cmd.equals("quit")) return State.QUIT;
             }
             out.println("Invalid option!");
-            Utils.screenFoze();
+            Utils.screenFroze();
             return State.MAIN_MENU;
         }
         else{
             out.println("No such a book, please check your spelling!");
-            Utils.screenFoze();
+            Utils.screenFroze();
             return State.RETURN_BOOK;
         }
     }
