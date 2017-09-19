@@ -6,7 +6,7 @@ public class Librarian implements Account {
 
     private String name;
     private String password;
-    private Role role = Role.COSTUMER;
+    private Role role = Role.LIBRARIAN;
     private String ID;
 
     public Librarian(String name, String password, String ID) {
