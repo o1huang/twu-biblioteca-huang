@@ -1,5 +1,6 @@
 package com.twu.biblioteca;
 
+import com.twu.biblioteca.auth.Auth;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -15,6 +16,8 @@ public class StoreTest {
         store.addBook("nop jj","moel","1887");
         store.addMovie("Dragon Lore","2014","Gabe Newell","7");
         store.addMovie("Friend Request","2001","Simon Verhoeven","5");
+        Auth.userSignUp("poo","000000", "000-1130", "Z@bil.com", "112112212");
+        Auth.login("000-1130","000000");
     }
 
     @Test
@@ -40,7 +43,7 @@ public class StoreTest {
 
     @Test
     public void checkoutAndReturnMovie() throws Exception {
-        store.checkoutMovie(new MovieInfo("Dragon Lore","2014","Gabe Newell","7"));
+        store.checkoutItem (new MovieInfo("Dragon Lore","2014","Gabe Newell","7"));
         assertEquals( "[Friend Request\t2001\tSimon Verhoeven\t5]",store.getAvailableMovies().toString());
         store.returnMovie(new MovieInfo("Dragon Lore","2014","Gabe Newell","7"));
         assertEquals( "[Dragon Lore\t2014\tGabe Newell\t7, Friend Request\t2001\tSimon Verhoeven\t5]"

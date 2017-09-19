@@ -3,6 +3,7 @@ package com.twu.biblioteca;
 import com.sun.istack.internal.Nullable;
 import com.twu.biblioteca.auth.Account;
 import com.twu.biblioteca.auth.User;
+import org.junit.runner.RunWith;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,7 +30,7 @@ public class Store {
     //store filed
     public ArrayList<BookInfo> books=new ArrayList<>();
 
-    public ArrayList<User> users=new ArrayList<>(); //
+    public ArrayList<Account> users=new ArrayList<>(); //
 
     public ArrayList<MovieInfo> movies=new ArrayList<>();
 
@@ -40,14 +41,17 @@ public class Store {
 
     //loan infos
     private void addLoan(User u,Item i){
-        loans.add(new Loan(u.getID(),i.getName()));
+        loans.add(new Loan(u,i));
     }
     private void delLoan(User u,Item i){
         loans = (ArrayList<Loan>)loans.stream()
-                .filter(l->!(l.userID.equals(u.getID()) && l.itemName.equals(i.getName())))
+                .filter(l->!(l.user.getID().equals(u.getID()) && l.item.getName().equals(i.getName())))
                 .collect(Collectors.toList());
     }
-    public List<String> getLoan(){}
+    public List<Loan> getLoanInfo(){
+        return loans;
+    }
+
 
     public boolean checkoutItem(Item item){
         Optional<BookInfo> storeBook = books.stream().filter(x->x.equals(item)).findFirst();

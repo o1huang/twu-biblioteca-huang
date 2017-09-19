@@ -6,10 +6,12 @@ import com.twu.biblioteca.Store;
 import java.util.Optional;
 
 public class Auth {
-    public static Optional<User> login(String ID, String password){
-        Optional<User> ou=findUser(ID);
+    public static Optional<Account> login(String ID, String password){
+        Optional<Account> ou=findUser(ID);
         if(ou.isPresent()){
             if (ou.get().verifyPassWord(password)){
+                Store store = Store.getInstance();
+                store.setCurrentUser(ou.get());
                 return ou;   //not empty
             }
             else return Optional.empty();
@@ -37,11 +39,11 @@ public class Auth {
      * @return false:user already exists
      */
     public static boolean userSignUp(String name, String password, String id, String email, String phoneNumber) {
-        Optional<User> ou = findUser(id);
+        Optional<Account> ou = findUser(id);
         return !ou.isPresent() && Store.getInstance().users.add(new User(name, password, id, email, phoneNumber));
     }
 
-    static Optional<User> findUser(String ID){
+    static Optional<Account> findUser(String ID){
         Store store= Store.getInstance();
         return store.users.stream().filter( x->x.sameID(ID)).findFirst();
     }

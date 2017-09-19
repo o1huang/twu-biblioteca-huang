@@ -1,5 +1,6 @@
 package com.twu.biblioteca;
 
+import com.twu.biblioteca.auth.Account;
 import com.twu.biblioteca.auth.Auth;
 import com.twu.biblioteca.auth.Role;
 import com.twu.biblioteca.auth.User;
@@ -10,6 +11,7 @@ import static java.lang.System.out;
 
 import java.io.Console;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
 
@@ -26,12 +28,10 @@ public class Core {
         Console cons = System.console();
         String ID = cons.readLine("ID: ");
         String passwd = String.valueOf( cons.readPassword("password: "));
-        Optional<User> ou = Auth.login(ID,passwd);
+        Optional<Account> ou = Auth.login(ID,passwd);
         if(ou.isPresent()){
             out.println("Log in succeeded!");
-            User u=ou.get();
-            Store store = Store.getInstance();
-            store.setCurrentUser(u);
+            Account u=ou.get();
             Utils.screenFoze();
 
             if(u.getRole()== Role.COSTUMER) return State.MAIN_MENU;
@@ -46,29 +46,90 @@ public class Core {
         return State.QUIT; //user is not either costumer or admin
     }
 
+    static State userInfoView(){
+        Store store=Store.getInstance();
+        User me =(User) store.getCurrentUser();
+        out.println("--------------- my profile ---------------");
+        out.println(me+"\n");
+        out.println("Enter number to select an option;\nOr enter \"quit\" to quit biblioteca");
+        out.println("1. back to main menu");
+        Object res = Utils.read();
+        if(res instanceof Integer){
+            int cmd = (int)res;
+            if(1 == cmd) return State.MAIN_MENU;
+
+        }else {
+            String cmd =(String)res;
+            if (cmd.equals("quit")) return State.QUIT;
+        }
+        //no option matched!
+        out.println("Invalid command!");
+        Utils.screenFoze();
+        return State.USER_INFO;
+
+
+    }
+
     static State adminMainMenuView() {
         out.println("====================Main Menu=================");
         out.println("Enter number to select an option;\nOr enter \"quit\" to quit biblioteca");
-        out.println("1. display Lending information of books");
-        out.println("#\tID\tname\tbook");
+        out.println("1. show Lending information of books");
+        Object res = Utils.read();
+        if(res instanceof Integer){
+            int cmd = (int)res;
+            if(1 == cmd) return State.LOAN_LIST;
 
+        }else {
+            String cmd =(String)res;
+            if (cmd.equals("quit")) return State.QUIT;
+        }
+        //no option matched!
+        out.println("Invalid command!");
+        Utils.screenFoze();
+        return State.ADMIN_MAIN_MENU;
 
-        return null;
     }
 
+    static State loanListView(){
+        Store store=Store.getInstance();
+        List<Loan> loans=store.getLoanInfo();
+        out.println("--------------- loan book list ---------------");
+        out.println("#\tname\tID\tbook");
 
+        for (int i=1;i<=loans.size();i++){
+            out.println(Integer.toString(i)+"\t"+loans.get(i-1).toString());
+        }
+        out.println("Enter number to select an option;\nOr enter \"quit\" to quit biblioteca");
+        out.println("1. back to main menu");
+        Object res = Utils.read();
+        if(res instanceof Integer){
+            int cmd = (int)res;
+            if(1==cmd) return State.ADMIN_MAIN_MENU;
+
+        }else {
+            String cmd =(String)res;
+            if (cmd.equals("quit")) return State.QUIT;
+        }
+        //no option matched!
+        out.println("Invalid command!");
+        Utils.screenFoze();
+        return State.ADMIN_MAIN_MENU;
+
+    }
     static State mainMenuView(){
         out.println("====================Main Menu=================");
         out.println("Enter number to select an option;\nOr enter \"quit\" to quit biblioteca");
-        out.println("1. display the list of available books");
-        out.println("2. display the list of available movies");
+        out.println("1. show the list of available books");
+        out.println("2. show the list of available movies");
         out.println("3. return a book");
+        out.println("4. show my profile");
         Object res = Utils.read();
         if(res instanceof Integer){
             int cmd = (int)res;
             if(1 == cmd) return State.BOOK_LIST;
             if(2 == cmd) return State.MOVIE_LIST;
             if(3 == cmd) return State.RETURN_BOOK;
+            if(4 == cmd) return State.USER_INFO;
 
         }else {
             String cmd =(String)res;
@@ -214,6 +275,7 @@ public class Core {
                 case SIGN_UP:
                     break;
                 case USER_INFO:
+                    next_state=userInfoView();
                     break;
                 case WELCOME:
                     next_state= welcomeView();
@@ -238,10 +300,13 @@ public class Core {
                 case RETURN_BOOK:
                     next_state=returnBookView();
                     break;
+                case LOAN_LIST:
+                    next_state=loanListView();
+                    break;
                 case QUIT:
                     break;
             }
-            if(Auth.authorize(next_state)){
+            if( ! Auth.authorize(next_state)){
                 return;
             }
             if(next_state==State.QUIT) return;

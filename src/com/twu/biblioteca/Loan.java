@@ -1,13 +1,19 @@
 package com.twu.biblioteca;
 
+import com.twu.biblioteca.auth.User;
+
 public class Loan {
-    public String userID;
-    public String itemName;
+    public User user;
+    public Item item;
 
 
-    public Loan(String userID, String itemName) {
-        this.userID = userID;
-        this.itemName = itemName;
+    public Loan(User user, Item item) {
+        this.user = user;
+        this.item = item;
+    }
 
+    @Override
+    public String toString() {
+        return user.getID()+"\t"+user.getName()+"\t"+item.getName();
     }
 }

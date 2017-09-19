@@ -15,8 +15,6 @@ public class User implements Account {
     private String phoneNumber;
 
 
-    private ArrayList<Item> possessedItems=new ArrayList<>();
-
     public User(String name, String password, String id, String email, String phoneNumber) {
         this.name = name;
         this.password = password;
@@ -57,4 +55,8 @@ public class User implements Account {
                 Objects.equals(phoneNumber, user.phoneNumber);
     }
 
+    @Override
+    public String toString() {
+        return name+"\t"+ID+"\t"+email+"\t"+phoneNumber;
+    }
 }
