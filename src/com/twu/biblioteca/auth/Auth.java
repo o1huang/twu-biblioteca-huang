@@ -1,11 +1,12 @@
 package com.twu.biblioteca.auth;
 
+import com.twu.biblioteca.State;
 import com.twu.biblioteca.Store;
 
 import java.util.Optional;
 
 public class Auth {
-    public static Optional<User> authorize(String ID, String password){
+    public static Optional<User> login(String ID, String password){
         Optional<User> ou=findUser(ID);
         if(ou.isPresent()){
             if (ou.get().verifyPassWord(password)){
@@ -14,6 +15,21 @@ public class Auth {
             else return Optional.empty();
         }
         return Optional.empty();
+    }
+    public static boolean authorize(State state){
+        Store store=Store.getInstance();
+        Account u=store.getCurrentUser();
+        //TODO
+        if (u==null){
+
+        }
+        else if (u.getRole()==Role.COSTUMER) {
+
+        }
+        else if (u.getRole()==Role.LIBRARIAN) {
+
+        }
+        return true;
     }
 
     /**

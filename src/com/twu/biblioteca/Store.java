@@ -1,5 +1,6 @@
 package com.twu.biblioteca;
 
+import com.sun.istack.internal.Nullable;
 import com.twu.biblioteca.auth.Account;
 import com.twu.biblioteca.auth.User;
 
@@ -20,7 +21,7 @@ public class Store {
 
     //state filed
     private Item selectedItem;
-    public Account currentUser;
+    private Account currentUser=null;
 
 
 
@@ -30,6 +31,8 @@ public class Store {
     public ArrayList<User> users=new ArrayList<>(); //
 
     public ArrayList<MovieInfo> movies=new ArrayList<>();
+    
+    public ArrayList<Loan> loans=new ArrayList();
 
 
     //methods
@@ -117,6 +120,7 @@ public class Store {
         this.currentUser = currentUser;
     }
 
+    @Nullable
     public Account getCurrentUser() {
         return currentUser;
     }

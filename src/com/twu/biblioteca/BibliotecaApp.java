@@ -10,6 +10,9 @@ public class BibliotecaApp {
         store.addBook("kazuya","moel","1887");
         store.addBook("WDFD","moel","1887");
         store.addBook("lastOfus","moel","1887");
+        store.addMovie("Dragon Lore","2014","Gabe Newell","7");
+        store.addMovie("Friend Request","2001","Simon Verhoeven","5");
+        store.addMovie("Milo Francisco","2002","Vello Maxson","6");
     }
 
     public void start(){

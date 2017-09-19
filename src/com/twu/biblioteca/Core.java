@@ -18,7 +18,7 @@ public class Core {
     static State welcomeView(){
         out.println(AsciiPic.welcome);
         Utils.screenFoze();
-        return State.MAIN_MENU;
+        return State.SIGN_IN;
     }
 
     static State signInView(){
@@ -26,26 +26,35 @@ public class Core {
         Console cons = System.console();
         String ID = cons.readLine("ID: ");
         String passwd = String.valueOf( cons.readPassword("password: "));
-        Optional<User> ou = Auth.authorize(ID,passwd);
+        Optional<User> ou = Auth.login(ID,passwd);
         if(ou.isPresent()){
             out.println("Log in succeeded!");
             User u=ou.get();
             Store store = Store.getInstance();
             store.setCurrentUser(u);
-            if(u.getRole()== Role.COSTUMER){
+            Utils.screenFoze();
 
-            }
-            else if(u.getRole() == Role.LIBRARIAN){
+            if(u.getRole()== Role.COSTUMER) return State.MAIN_MENU;
+            if(u.getRole() == Role.LIBRARIAN) return State.ADMIN_MAIN_MENU;
 
-            }
         }
         else{
             out.println("ID and password doesn't match, please try again!");
             Utils.screenFoze();
             return State.SIGN_IN;
         }
+        return State.QUIT; //user is not either costumer or admin
+    }
+
+    static State adminMainMenuView() {
+        out.println("====================Main Menu=================");
+        out.println("Enter number to select an option;\nOr enter \"quit\" to quit biblioteca");
+        out.println("1. display Lending information of books");
+
+
         return null;
     }
+
 
     static State mainMenuView(){
         out.println("====================Main Menu=================");
@@ -74,7 +83,7 @@ public class Core {
         Store store=Store.getInstance();
         ArrayList<MovieInfo> availableMovies=store.getAvailableMovies();
         out.println("---------------- movie list -------------------");
-        out.println("#\tname\tyear\tdirector\trating");
+        out.println("#\tname\t\tyear\tdirector\t\trating");
         for (int i=1;i<=availableMovies.size();i++){
             out.println(Integer.toString(i)+"\t"+availableMovies.get(i-1).toString());
         }
@@ -198,11 +207,21 @@ public class Core {
                 case INIT:
                     next_state= State.WELCOME;
                     break;
+                case SIGN_IN:
+                    next_state = signInView();
+                    break;
+                case SIGN_UP:
+                    break;
                 case WELCOME:
                     next_state= welcomeView();
                     break;
                 case MAIN_MENU:
                     next_state= mainMenuView();
+                    break;
+                case ADMIN_MAIN_MENU:
+                    break;
+                case MOVIE_LIST:
+                    next_state = movieListView();
                     break;
                 case BOOK_LIST:
                     next_state= bookListView();
@@ -218,10 +237,11 @@ public class Core {
                 case QUIT:
                     break;
             }
+            if(Auth.authorize(next_state)){
+                return;
+            }
             if(next_state==State.QUIT) return;
         }
     }
 }
-enum State{
-    INIT,SIGN_IN,SIGN_UP, WELCOME, MAIN_MENU,MOVIE_LIST, BOOK_LIST, ITEM_INFO, CHECKOUT_BOOK, RETURN_BOOK, QUIT
-}
+

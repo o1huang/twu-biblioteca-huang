@@ -19,12 +19,12 @@ public class AuthTest {
     }
 
     @Test
-    public void authorize() throws Exception {
+    public void lgoin() throws Exception {
         assertEquals(
                 new User("wang","123456", "000-1110", "Z@bil.com", "112112212")
-                ,Auth.authorize("000-1110","123456").get());
+                ,Auth.login("000-1110","123456").get());
         assertEquals(Optional.empty()
-                ,Auth.authorize("xxxxxxNoSuchName----","123456"));
+                ,Auth.login("xxxxxxNoSuchName----","123456"));
     }
 
     @Test
