@@ -1,6 +1,7 @@
 package com.twu.biblioteca;
 
 import com.twu.biblioteca.auth.Auth;
+import com.twu.biblioteca.auth.Role;
 import com.twu.biblioteca.auth.User;
 import com.twu.biblioteca.util.Utils;
 import com.twu.biblioteca.util.AsciiPic;
@@ -20,7 +21,7 @@ public class Core {
         return State.MAIN_MENU;
     }
 
-    static State LoginView(){
+    static State signInView(){
         out.println("-----------------log in-----------------");
         Console cons = System.console();
         String ID = cons.readLine("ID: ");
@@ -28,6 +29,15 @@ public class Core {
         Optional<User> ou = Auth.authorize(ID,passwd);
         if(ou.isPresent()){
             out.println("Log in succeeded!");
+            User u=ou.get();
+            Store store = Store.getInstance();
+            store.setCurrentUser(u);
+            if(u.getRole()== Role.COSTUMER){
+
+            }
+            else if(u.getRole() == Role.LIBRARIAN){
+
+            }
         }
         else{
             out.println("ID and password doesn't match, please try again!");
@@ -46,15 +56,10 @@ public class Core {
         Object res = Utils.read();
         if(res instanceof Integer){
             int cmd = (int)res;
-            if(cmd==1){
-                return State.BOOK_LIST;
-            }
-            else if(cmd==2){
+            if(1 == cmd) return State.BOOK_LIST;
+            if(2 == cmd) return State.MOVIE_LIST;
+            if(3 == cmd) return State.RETURN_BOOK;
 
-            }
-            else if(cmd==3){
-                return State.RETURN_BOOK;
-            }
         }else {
             String cmd =(String)res;
             if (cmd.equals("quit")) return State.QUIT;
@@ -65,21 +70,21 @@ public class Core {
         return State.MAIN_MENU;
 
     }
-    static State bookListView(){
+    static State movieListView(){
         Store store=Store.getInstance();
-        ArrayList<BookInfo> availableBooks=store.getAvailableBooks();
-        out.println("-------------- Book list -----------------");
-        out.println("#\tname\tauthor\tyear\t");
-        for (int i=1;i<=availableBooks.size();i++){
-            out.println(Integer.toString(i)+"\t"+availableBooks.get(i-1).toString());
+        ArrayList<MovieInfo> availableMovies=store.getAvailableMovies();
+        out.println("---------------- movie list -------------------");
+        out.println("#\tname\tyear\tdirector\trating");
+        for (int i=1;i<=availableMovies.size();i++){
+            out.println(Integer.toString(i)+"\t"+availableMovies.get(i-1).toString());
         }
-        out.println("Enter number to select a book;\nOr enter \"quit\" to quit biblioteca");
+        out.println("Enter number to select a item;\nOr enter \"quit\" to quit biblioteca");
         Object res = Utils.read();
         if(res instanceof Integer){
             int cmd = (int)res;
-            if(cmd>0&&cmd<=availableBooks.size()){
-                store.selectedBookInfo=availableBooks.get(cmd-1);
-                return State.BOOK_INFO;
+            if(cmd>0&&cmd<=availableMovies.size()){
+                store.setSelectedItem(availableMovies.get(cmd-1));
+                return State.ITEM_INFO;
             }
         }else {
             String cmd =(String)res;
@@ -89,25 +94,49 @@ public class Core {
         out.println("Invalid option!");
         return State.BOOK_LIST;
     }
-    static State bookInfoView(){
+    static State bookListView(){
         Store store=Store.getInstance();
-        BookInfo selectedBook=store.selectedBookInfo;
-        out.println("----------------book info-----------------");
-        out.println("your selected book: \n"+selectedBook.toString());
+        ArrayList<BookInfo> availableBooks=store.getAvailableBooks();
+        out.println("-------------- book list -----------------");
+        out.println("#\tname\tauthor\tyear\t");
+        for (int i=1;i<=availableBooks.size();i++){
+            out.println(Integer.toString(i)+"\t"+availableBooks.get(i-1).toString());
+        }
+        out.println("Enter number to select a item;\nOr enter \"quit\" to quit biblioteca");
+        Object res = Utils.read();
+        if(res instanceof Integer){
+            int cmd = (int)res;
+            if(cmd>0&&cmd<=availableBooks.size()){
+                store.setSelectedItem(availableBooks.get(cmd-1));
+                return State.ITEM_INFO;
+            }
+        }else {
+            String cmd =(String)res;
+            if (cmd.equals("quit")) return State.QUIT;
+        }
+        //no option matched!
+        out.println("Invalid option!");
+        return State.BOOK_LIST;
+    }
+    static State itemInfoView(){
+        Store store=Store.getInstance();
+        Item selectedItem= store.getSelectedItem();
+        out.println("----------------item info-----------------");
+        out.println("your selected item: \n"+selectedItem.toString());
         out.println("Enter number to select an option;");
-        out.println("1. checkout this book");
+        out.println("1. checkout this item");
         out.println("2. cancel and back to main menu");
 
         Object res = Utils.read();
         if(res instanceof Integer){
             int cmd = (int)res;
             if(cmd==1){
-                store.checkoutBook(selectedBook);
+                store.checkoutItem(selectedItem);
                 out.println("Checkout succeed!");
                 Utils.screenFoze();
                 return State.MAIN_MENU;
             }
-            else if(cmd==2){
+            if(cmd==2){
                 out.println("Canceled!");
                 Utils.screenFoze();
                 return State.MAIN_MENU;
@@ -118,7 +147,7 @@ public class Core {
         //no option matched!
         out.println("Invalid option!");
         Utils.screenFoze();
-        return State.BOOK_INFO;
+        return State.ITEM_INFO;
     }
     static State returnBookView(){
         Store store=Store.getInstance();
@@ -141,7 +170,7 @@ public class Core {
                     Utils.screenFoze();
                     return State.MAIN_MENU;
                 }
-                else if(cmd==2){
+                if(cmd==2){
                     out.println("Return book canceled!");
                     Utils.screenFoze();
                     return State.MAIN_MENU;
@@ -161,6 +190,7 @@ public class Core {
         }
     }
 
+
     static void run(){
         State next_state=State.INIT;
         while(true){
@@ -177,8 +207,8 @@ public class Core {
                 case BOOK_LIST:
                     next_state= bookListView();
                     break;
-                case BOOK_INFO:
-                    next_state= bookInfoView();
+                case ITEM_INFO:
+                    next_state= itemInfoView();
                     break;
                 case CHECKOUT_BOOK:
                     break;
@@ -193,5 +223,5 @@ public class Core {
     }
 }
 enum State{
-    INIT,SIGN_IN,SIGN_UP, WELCOME, MAIN_MENU, BOOK_LIST, BOOK_INFO, CHECKOUT_BOOK, RETURN_BOOK, QUIT
+    INIT,SIGN_IN,SIGN_UP, WELCOME, MAIN_MENU,MOVIE_LIST, BOOK_LIST, ITEM_INFO, CHECKOUT_BOOK, RETURN_BOOK, QUIT
 }

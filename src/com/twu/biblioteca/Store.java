@@ -3,7 +3,6 @@ package com.twu.biblioteca;
 import com.twu.biblioteca.auth.Account;
 import com.twu.biblioteca.auth.User;
 
-import java.nio.channels.AcceptPendingException;
 import java.util.ArrayList;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -20,8 +19,10 @@ public class Store {
     }
 
     //state filed
-    public BookInfo selectedBookInfo;
+    private Item selectedItem;
     public Account currentUser;
+
+
 
     //store filed
     public ArrayList<BookInfo> books=new ArrayList<>();
@@ -47,8 +48,13 @@ public class Store {
     }
 
 
-    public boolean checkoutBook(BookInfo b){
-        Optional<BookInfo> storeBook = books.stream().filter(x->x.equals(b)).findFirst();
+    public boolean checkoutItem(Item item){
+        Optional<BookInfo> storeBook = books.stream().filter(x->x.equals(item)).findFirst();
+        if(storeBook.isPresent()){
+            storeBook.get().rent();
+            return true;
+        }
+        Optional<MovieInfo> storeMovie = movies.stream().filter(x->x.equals(item)).findFirst();
         if(storeBook.isPresent()){
             storeBook.get().rent();
             return true;
@@ -106,11 +112,21 @@ public class Store {
     }
 
 
+    //get,set
+    public void setCurrentUser(Account currentUser) {
+        this.currentUser = currentUser;
+    }
 
+    public Account getCurrentUser() {
+        return currentUser;
+    }
 
+    public Item getSelectedItem() {
+        return selectedItem;
+    }
 
-
-
-
+    public void setSelectedItem(Item selectedItem) {
+        this.selectedItem = selectedItem;
+    }
 }
 

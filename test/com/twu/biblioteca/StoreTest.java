@@ -3,10 +3,6 @@ package com.twu.biblioteca;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.*;
-import java.util.stream.Collectors;
-
-import static java.util.Arrays.asList;
 import static org.junit.Assert.*;
 
 public class StoreTest {
@@ -35,7 +31,7 @@ public class StoreTest {
 
     @Test
     public void checkoutAndReturnBook() throws Exception {
-        store.checkoutBook(new BookInfo("xxxn","Crack","1990"));
+        store.checkoutItem(new BookInfo("xxxn","Crack","1990"));
         assertEquals("[nop jj\tmoel\t1887]",store.getAvailableBooks().toString());
         store.returnBook(new BookInfo("xxxn","Crack","1990"));
         assertEquals("[xxxn\tCrack\t1990, nop jj\tmoel\t1887]",store.getAvailableBooks().toString());
