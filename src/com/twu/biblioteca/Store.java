@@ -55,8 +55,8 @@ public class Store {
             return true;
         }
         Optional<MovieInfo> storeMovie = movies.stream().filter(x->x.equals(item)).findFirst();
-        if(storeBook.isPresent()){
-            storeBook.get().rent();
+        if(storeMovie.isPresent()){
+            storeMovie.get().rent();
             return true;
         }
         return false;

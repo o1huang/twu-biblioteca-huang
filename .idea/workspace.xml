@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4cc53b41-be48-4ce3-bfa1-2ef7cbba7eee" name="Default" comment="refactor&#10; book view -&gt; item list view&#10; book info view -&gt; item info view&#10;&#10;add getter setter to Store::selectedItem">
+    <list default="true" id="4cc53b41-be48-4ce3-bfa1-2ef7cbba7eee" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/twu/biblioteca/Core.java" afterPath="$PROJECT_DIR$/src/com/twu/biblioteca/Core.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/twu/biblioteca/Store.java" afterPath="$PROJECT_DIR$/src/com/twu/biblioteca/Store.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/com/twu/biblioteca/StoreTest.java" afterPath="$PROJECT_DIR$/test/com/twu/biblioteca/StoreTest.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -17,11 +15,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Core.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Core.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/twu/biblioteca/Core.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1720">
-              <caret line="23" column="27" lean-forward="false" selection-start-line="23" selection-start-column="17" selection-end-line="23" selection-end-column="27" />
+            <state relative-caret-position="-208">
+              <caret line="128" column="0" lean-forward="true" selection-start-line="128" selection-start-column="0" selection-end-line="128" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -53,21 +51,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Store.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Store.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/twu/biblioteca/Store.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="237">
-              <caret line="50" column="41" lean-forward="false" selection-start-line="50" selection-start-column="37" selection-end-line="50" selection-end-column="41" />
+            <state relative-caret-position="188">
+              <caret line="59" column="24" lean-forward="true" selection-start-line="59" selection-start-column="24" selection-end-line="59" selection-end-column="24" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#3406#3407#0" expanded="true" />
-                <element signature="e#3452#3453#0" expanded="true" />
-                <element signature="e#3491#3492#0" expanded="true" />
-                <element signature="e#3525#3526#0" expanded="true" />
-                <element signature="e#3562#3563#0" expanded="true" />
-                <element signature="e#3597#3598#0" expanded="true" />
-                <element signature="e#3651#3652#0" expanded="true" />
-                <element signature="e#3699#3700#0" expanded="true" />
+                <element signature="e#3408#3409#0" expanded="true" />
+                <element signature="e#3454#3455#0" expanded="true" />
+                <element signature="e#3493#3494#0" expanded="true" />
+                <element signature="e#3527#3528#0" expanded="true" />
+                <element signature="e#3564#3565#0" expanded="true" />
+                <element signature="e#3599#3600#0" expanded="true" />
+                <element signature="e#3653#3654#0" expanded="true" />
+                <element signature="e#3701#3702#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -132,8 +130,9 @@
         <option value="$PROJECT_DIR$/src/com/twu/biblioteca/MovieInfo.java" />
         <option value="$PROJECT_DIR$/src/com/twu/biblioteca/auth/User.java" />
         <option value="$PROJECT_DIR$/src/com/twu/biblioteca/BookInfo.java" />
-        <option value="$PROJECT_DIR$/src/com/twu/biblioteca/Store.java" />
         <option value="$PROJECT_DIR$/src/com/twu/biblioteca/Core.java" />
+        <option value="/Dummy.txt" />
+        <option value="$PROJECT_DIR$/src/com/twu/biblioteca/Store.java" />
       </list>
     </option>
   </component>
@@ -612,7 +611,14 @@
       <option name="project" value="LOCAL" />
       <updated>1505748520963</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="refactor&#10; book view -&gt; item list view&#10; book info view -&gt; item info view&#10;&#10;add getter setter to Store::selectedItem&#10;start writing login view">
+      <created>1505796129991</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1505796129991</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -741,7 +747,8 @@
     <MESSAGE value="add auth fix" />
     <MESSAGE value="login view" />
     <MESSAGE value="refactor&#10; book view -&gt; item list view&#10; book info view -&gt; item info view&#10;&#10;add getter setter to Store::selectedItem" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactor&#10; book view -&gt; item list view&#10; book info view -&gt; item info view&#10;&#10;add getter setter to Store::selectedItem" />
+    <MESSAGE value="refactor&#10; book view -&gt; item list view&#10; book info view -&gt; item info view&#10;&#10;add getter setter to Store::selectedItem&#10;start writing login view" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactor&#10; book view -&gt; item list view&#10; book info view -&gt; item info view&#10;&#10;add getter setter to Store::selectedItem&#10;start writing login view" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1239,30 +1246,30 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/twu/biblioteca/Store.java">
+    <entry file="file://$PROJECT_DIR$/src/com/twu/biblioteca/Core.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="237">
-          <caret line="50" column="41" lean-forward="false" selection-start-line="50" selection-start-column="37" selection-end-line="50" selection-end-column="41" />
+        <state relative-caret-position="-208">
+          <caret line="128" column="0" lean-forward="true" selection-start-line="128" selection-start-column="0" selection-end-line="128" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#3406#3407#0" expanded="true" />
-            <element signature="e#3452#3453#0" expanded="true" />
-            <element signature="e#3491#3492#0" expanded="true" />
-            <element signature="e#3525#3526#0" expanded="true" />
-            <element signature="e#3562#3563#0" expanded="true" />
-            <element signature="e#3597#3598#0" expanded="true" />
-            <element signature="e#3651#3652#0" expanded="true" />
-            <element signature="e#3699#3700#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/twu/biblioteca/Core.java">
+    <entry file="file://$PROJECT_DIR$/src/com/twu/biblioteca/Store.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1720">
-          <caret line="23" column="27" lean-forward="false" selection-start-line="23" selection-start-column="17" selection-end-line="23" selection-end-column="27" />
+        <state relative-caret-position="188">
+          <caret line="59" column="24" lean-forward="true" selection-start-line="59" selection-start-column="24" selection-end-line="59" selection-end-column="24" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#3408#3409#0" expanded="true" />
+            <element signature="e#3454#3455#0" expanded="true" />
+            <element signature="e#3493#3494#0" expanded="true" />
+            <element signature="e#3527#3528#0" expanded="true" />
+            <element signature="e#3564#3565#0" expanded="true" />
+            <element signature="e#3599#3600#0" expanded="true" />
+            <element signature="e#3653#3654#0" expanded="true" />
+            <element signature="e#3701#3702#0" expanded="true" />
           </folding>
         </state>
       </provider>
