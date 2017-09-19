@@ -25,13 +25,18 @@ public class Core {
 
     static State signInView(){
         out.println("-----------------log in-----------------");
-        Console cons = System.console();
-        String ID = cons.readLine("ID: ");
-        String passwd = String.valueOf( cons.readPassword("password: "));
+        Scanner in = new Scanner(System.in);
+        out.println("please input your ID:");
+        String ID=in.nextLine();
+        out.println("please input your password:");
+        String passwd=in.nextLine();
         Optional<Account> ou = Auth.login(ID,passwd);
         if(ou.isPresent()){
-            out.println("Log in succeeded!");
             Account u=ou.get();
+            out.println("Log in succeeded!");
+            out.println("welcome "+u.getName() +" !");
+
+
             Utils.screenFoze();
 
             if(u.getRole()== Role.COSTUMER) return State.MAIN_MENU;
@@ -50,6 +55,7 @@ public class Core {
         Store store=Store.getInstance();
         User me =(User) store.getCurrentUser();
         out.println("--------------- my profile ---------------");
+        out.println("name   \tID   \t  email     \tphone number");
         out.println(me+"\n");
         out.println("Enter number to select an option;\nOr enter \"quit\" to quit biblioteca");
         out.println("1. back to main menu");
