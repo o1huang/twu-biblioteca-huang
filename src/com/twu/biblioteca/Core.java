@@ -50,6 +50,7 @@ public class Core {
         out.println("====================Main Menu=================");
         out.println("Enter number to select an option;\nOr enter \"quit\" to quit biblioteca");
         out.println("1. display Lending information of books");
+        out.println("#\tID\tname\tbook");
 
 
         return null;
@@ -212,6 +213,8 @@ public class Core {
                     break;
                 case SIGN_UP:
                     break;
+                case USER_INFO:
+                    break;
                 case WELCOME:
                     next_state= welcomeView();
                     break;
@@ -219,6 +222,7 @@ public class Core {
                     next_state= mainMenuView();
                     break;
                 case ADMIN_MAIN_MENU:
+                    next_state = adminMainMenuView();
                     break;
                 case MOVIE_LIST:
                     next_state = movieListView();
